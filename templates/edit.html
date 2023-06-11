@@ -1,0 +1,67 @@
+
+<!doctype html>
+
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Návod</title>
+  <meta name="description" content="Stránka s návody">
+  <script defer src="{{ url_for('static', filename='js/editImages.js') }}"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style/tutorial/tutorial.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style/edit/edit.css') }}">
+</head>
+</head>
+
+<body>
+    
+  <a href={{ url_for('show_administration') }} class="zpet left">&#xab; Zpět do administrace</a>
+  <a href={{ url_for('show_home') }} class="zpet right">Zpět na hlavní stránku &#xbb;</a>
+
+  {% if new_form %}
+    <form class="content" action="/new" method="post" enctype="multipart/form-data">
+  {% else %}
+    <form class="content" action="/edit/{{tutorial[0][0]}}" method="post" enctype="multipart/form-data">
+  {% endif %}
+  
+    <label for="nadpis">Nadpis</label>
+    {% if new_form %}
+      <input class="nadpis" type="text" name="nadpis" required>
+    {% else %}
+      <input class="nadpis" type="text" name="nadpis" value="{{tutorial[0][1]}}">
+    {% endif %}
+    
+    <hr>
+    <label for="text">Text</label>
+    {% if new_form %}
+      <textarea name="text"></textarea>
+    {% else %}
+      <textarea name="text"> {{tutorial[0][2]}} </textarea>
+    {% endif %}
+    <label for="image_urls[]">Obrázky:</label>
+    <div class="images">
+      {% for image in images %}
+        <div class="imageContainer" ondblclick="DeleteElement(this)">
+          <img src={{ url_for('static', filename=image[0]) }}>
+          <input type="hidden" name="image_urls[]" value="{{ url_for('static', filename=image[0]) }}">
+          <div class="poradi">Dvojklikem smažte</div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="buttonRow">
+      <button type="submit">Odeslat úpravu</button>
+      <div>
+        <p>Přidat obrázky</p>
+        <input type="file" name="uploaded_images[]" multiple>
+      </div>
+    </div>
+
+    {% if not new_form %}
+      <a class="delete" href={{ url_for('delete_tutorial', postID=tutorial[0][0]) }}>Smazat návod</a>
+    {% endif %}
+
+  </form>
+
+</body>
+</html>

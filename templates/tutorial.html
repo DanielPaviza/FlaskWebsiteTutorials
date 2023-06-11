@@ -1,0 +1,35 @@
+
+<!doctype html>
+
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Návod</title>
+  <meta name="description" content="Stránka s návody">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style/tutorial/tutorial.css') }}">
+  <script defer src="{{ url_for('static', filename='js/modalImage.js') }}"></script>
+</head>
+</head>
+
+<body>
+    
+  <a href={{ url_for('show_home') }} class="zpet left">&#xab; Zpět na hlavní stránku</a>
+
+  <div class="content">
+    <h1>{{tutorial[0][0]}}</h1>
+    <hr>
+    <p>{{tutorial[0][1]|safe}}</p>
+
+    <div class="images">
+      {% for image in images %}
+        <div class="imageContainer" onclick="ImageClick(this);">
+          <img src={{ url_for('static', filename=image[0]) }}>
+          <div class="poradi">{{image[1]}}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</body>
+</html>

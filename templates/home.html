@@ -1,0 +1,48 @@
+<!doctype html>
+
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Návody</title>
+  <meta name="description" content="Stránka s návody">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style/home/home.css') }}">
+</head>
+</head>
+
+<body>
+
+    <a href={{ url_for('show_administration') }} class="zpet right">Administrace &#xbb;</a>
+    
+    <div class="content">
+        <div class="left">
+            <h2>Seznam</h2>
+            <div class="links">
+                <ol>
+                    {% for tutorial in tutorials %}
+                        <li>
+                            <a href = {{ url_for('show_tutorial', postID=tutorial[0]) }}>{{tutorial[1]}}</a>
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+
+        <div class="right">
+            <h1>Návody</h1>
+            {% for tutorial in tutorials %}
+                <a class="tutorial" href={{ url_for('show_tutorial', postID=tutorial[0]) }}>
+                    <div>
+                        <h3>{{tutorial[1]}}</h3>
+                        <p>{{tutorial[2]}}</p>
+                    </div>
+                    {% if tutorial[3] is not none %}
+                        <img src="{{ tutorial[3] }}" alt="{{tutorial[1]}}">
+                    {% endif %}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>

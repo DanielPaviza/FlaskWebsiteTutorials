@@ -1,0 +1,33 @@
+
+$black: #211A1D;
+$brown: #F5EDF0;
+$white: #ffffff;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background-color: $white;
+    color: $black;
+}
+
+.zpet {
+    display: block;
+    text-decoration: none;
+    color: $black;
+    font-weight: bold;
+    font-size: 18px;
+    position: fixed;
+    top: 10px;
+    z-index: 22;
+    &.left {
+        left: 10px;
+    }
+    &.right {
+        right: 10px;
+    }
+}
