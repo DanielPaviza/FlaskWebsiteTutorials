@@ -64,6 +64,16 @@ body {
   margin-left: 8px;
   font-size: 22px;
 }
+.content > div .new_password {
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+  color: #211A1D;
+}
+.content > div .new_password:hover {
+  text-decoration: underline;
+}
 .content > div hr {
   width: 100%;
   border: 1px solid #211A1D;

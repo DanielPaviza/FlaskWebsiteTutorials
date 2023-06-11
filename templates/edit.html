@@ -38,16 +38,19 @@
     {% else %}
       <textarea name="text"> {{tutorial[0][2]}} </textarea>
     {% endif %}
-    <label for="image_urls[]">Obrázky:</label>
-    <div class="images">
-      {% for image in images %}
-        <div class="imageContainer" ondblclick="DeleteElement(this)">
-          <img src={{ url_for('static', filename=image[0]) }}>
-          <input type="hidden" name="image_urls[]" value="{{ url_for('static', filename=image[0]) }}">
-          <div class="poradi">Dvojklikem smažte</div>
-        </div>
-      {% endfor %}
-    </div>
+
+    {% if images!=[] %}
+      <label for="image_urls[]">Obrázky</label>
+      <div class="images">
+        {% for image in images %}
+          <div class="imageContainer" ondblclick="DeleteElement(this)">
+            <img src={{ url_for('static', filename=image[0]) }}>
+            <input type="hidden" name="image_urls[]" value="{{ url_for('static', filename=image[0]) }}">
+            <div class="poradi">Dvojklikem smažte</div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
 
     <div class="buttonRow">
       <button type="submit">Odeslat úpravu</button>

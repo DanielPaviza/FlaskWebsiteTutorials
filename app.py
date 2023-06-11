@@ -7,10 +7,6 @@ c = Controller()
 @app.route('/')
 def show_home():
    tutorials = c.get_tutorials_short()
-   print("tutorialyyyyyyyyyyy")
-   for t in tutorials:
-       print(t)
-   
    
    return render_template('home.html', tutorials = tutorials)
 
@@ -32,6 +28,20 @@ def show_administration():
 
     tutorials = c.get_administration_tutorials()
     return render_template('administrace.html', tutorials=tutorials)
+
+@app.route('/new_password', methods=['POST', 'GET'])
+def show_new_password():
+    loggedIn = c.get_is_logged_in(app)
+    if(loggedIn is not True):
+        return redirect(url_for('show_administration'))
+
+    if request.method == 'GET':
+        return render_template('new_password.html')
+    if request.method == "POST":
+        password = request.form.get('password')
+        c.update_password(password)
+
+    return redirect(url_for('show_administration'))
 
 @app.route('/new', methods=['POST', 'GET'])
 def show_new():

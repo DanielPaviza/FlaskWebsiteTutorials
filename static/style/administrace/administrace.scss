@@ -35,6 +35,16 @@ body {
                 font-size: 22px;
             }
         }
+        .new_password {
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: bold;
+            color: $black;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
         hr {
             width: 100%;
             border: 1px solid $black;

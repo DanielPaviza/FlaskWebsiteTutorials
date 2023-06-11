@@ -17,6 +17,12 @@ class Controller:
         app.secret_key = self.secret_key
         return session.get('loggedIn')
 
+    def update_password(self, password):
+        hashed_password = bcrypt.hash(password)
+        sql = f"UPDATE prihlaseni SET heslo='{hashed_password}' WHERE id=1"
+        self.execute_sql(sql)
+        session['loggedIn'] = False
+
     def get_stored_login(self):
         sql = "SELECT jmeno, heslo from prihlaseni LIMIT 1"
         return self.execute_sql(sql)[0]

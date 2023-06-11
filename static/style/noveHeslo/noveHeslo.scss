@@ -1,0 +1,47 @@
+
+@import '../shared/shared';
+
+.content {
+    width: 75%;
+    min-height: 100vh;
+    margin: 4vh;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4vh;
+    border-radius: 12px;
+    background-color: $brown;
+    h1 {
+        margin: 2vh;
+    }
+    label {
+        margin: 6px;
+        font-weight: bold;
+        font-size: 18px;
+    }
+    input {
+        height: 26px;
+        padding: 12px;
+        font-size: 17px;
+        min-width: 120px;
+        border: 1px solid $black;
+    }
+    .button {
+        cursor: pointer;
+        margin: 10px;
+        margin-top: 2vh;
+        padding: 8px;
+        font-weight: bold;
+        font-size: 16px;
+        border-radius: 6px;
+        border: 1px solid $black;
+    }
+    #error {
+        margin: 6px;
+        color: rgb(172, 15, 15);
+        &.hidden {
+            display: none;
+        }
+    }
+}

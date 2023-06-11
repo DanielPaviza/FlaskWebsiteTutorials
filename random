@@ -1,7 +1,0 @@
-    sql = "SELECT navody.nadpis, navody.text, obrazky.cesta, obrazky.poradi \
-           FROM navody \
-           JOIN obrazky \
-           ON navody.id = obrazky.id_navod \
-           WHERE navody.id=" + str(id)
-
-
